@@ -3,26 +3,19 @@ import java.util.Set;
 
 public class ArraypairSumDivK {
     public boolean canPair(int[] nums, int k) {
-        int n = nums.length;
-
-        if (n % 2 == 1) {
-            return false;
-        }
-
-        Set<Integer> st = new HashSet<>();
-
-        for (int i = 0; i < n; i++) {
-            int remain = nums[i] % k;
-            int other_remain = k - remain;
-
-            if (st.contains(other_remain) || ((remain == 0) && (st.contains(0)))) {
-                st.remove(remain);
-                st.remove(other_remain);
-            } else {
-                st.add(remain);
-            }
-        }
-
-        return st.size() == 0;
+       int n=nums.length;
+       if(n%2!=0) return false;
+       HashSet<Integer> hs=new HashSet<>();
+       for(int i=0;i<n;i++){
+           int remaining=nums[i]%k;
+           int other_remaining=k-remaining;
+           if(hs.contains(other_remaining)|| (remaining==0 && hs.contains(0))){
+               hs.remove(remaining);
+               hs.remove(other_remaining);
+           }else{
+               hs.add(remaining);
+           }
+       }
+       return hs.size()==0;
     }
 }
